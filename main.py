@@ -362,7 +362,9 @@ class Test(Scene):
             BoxSquare,
             ASquare.copy(),
             BSquare.copy(),
-            right_tri1, right_tri2, right_tri3, right_tri4
+            right_tri1, right_tri2, right_tri3, right_tri4,
+            POSTtexta1, POSTtexta2, POSTtextb1, POSTtextb2
+
         )
 
         ABOX=VGroup(ASquare,POSTtexta1,POSTtexta2)
@@ -373,9 +375,29 @@ class Test(Scene):
             )
         
         self.play(
-            ABOX.animate.shift(LEFT).scale(0.5),
-            BBOX.animate.shift(UP*2+LEFT).scale(0.5)
+            ABOX.animate.shift(LEFT*1.5).scale(0.5),
+            BBOX.animate.shift(UP*2.2+LEFT*1.7).scale(0.5)
         )
+
+        PLUS = MathTex(r"+").next_to(ABOX,RIGHT,buff=0.3)
+
+        EQUAL = MathTex(r"=").next_to(BBOX,RIGHT,buff=0.5)
+
+        
+
+        CEqual = VGroup(CSquare, textc3, textc4).copy()
+        
+        CEqual.generate_target() 
+        
+        CEqual.target.rotate(-atan(1/2)).next_to(EQUAL,RIGHT,buff=0.5)
+
+        self.play(
+            MoveToTarget(CEqual),
+            Write(PLUS),
+            Write(EQUAL)
+        )
+
+
 
 
         self.wait()
